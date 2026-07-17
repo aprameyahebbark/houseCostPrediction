@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>House Price Predictor</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;   /* changed */
+    min-height: 100vh;         /* changed */
+    margin: 0;
+    padding: 20px;             /* added */
+}
+
+        .container {
+            background: white;
+            padding: 25px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            width: 420px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        input:focus, select:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        .info-box {
+            background: #f9fafb;
+            padding: 10px;
+            border-left: 4px solid #4CAF50;
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 15px;
+            border-radius: 6px;
+        }
+
+        .result {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h2>🏠 House Price Prediction</h2>
+
+    <form action="/predict" method="post">
+
+        <label>Location</label>
+        <select name="location" required>
+            <option value="">Select City</option>
+            <option value="mumbai">Mumbai</option>
+            <option value="bangalore">Bangalore</option>
+            <option value="chennai">Chennai</option>
+            <option value="hyderabad">Hyderabad</option>
+            <option value="pune">Pune</option>
+            <option value="kolkata">Kolkata</option>
+            <option value="new-delhi">New Delhi</option>
+            <option value="ahmedabad">Ahmedabad</option>
+            <option value="nagpur">Nagpur</option>
+            <option value="indore">Indore</option>
+            <option value="jaipur">Jaipur</option>
+            <option value="lucknow">Lucknow</option>
+            <option value="surat">Surat</option>
+        </select>
+
+        <label>Carpet Area (sq ft)</label>
+        <input type="number" name="Carpet Area" min="300" max="3000" placeholder="Enter area in sqft" required>
+
+        <div class="info-box">
+            <b>Carpet Area:</b> Usable area inside the house<br><br>
+            • 300–600 → Small (1BHK)<br>
+            • 600–1200 → Medium (2BHK)<br>
+            • 1200–2000 → Large (3BHK)<br>
+            • 2000–3000 → Luxury
+        </div>
+
+        <label>Status</label>
+        <select name="Status">
+            <option value="Ready to Move">Ready to Move</option>
+        </select>
+
+        <label>Floor</label>
+        <input type="number" name="Floor" min="0" max="30" placeholder="0 - 30" required>
+
+        <label>Transaction</label>
+        <select name="Transaction">
+            <option value="Resale">Resale</option>
+            <option value="New Property">New Property</option>
+        </select>
+
+        <label>Furnishing</label>
+        <select name="Furnishing">
+            <option value="Furnished">Furnished</option>
+            <option value="Semi-Furnished">Semi-Furnished</option>
+            <option value="Unfurnished">Unfurnished</option>
+        </select>
+
+        <label>Bathrooms</label>
+        <select name="Bathroom">
+            <option value="">Select</option>
+            <option>1</option><option>2</option><option>3</option>
+            <option>4</option><option>5</option><option>6</option>
+        </select>
+
+        <label>Balcony</label>
+        <select name="Balcony">
+            <option value="">Select</option>
+            <option>0</option><option>1</option><option>2</option>
+            <option>3</option><option>4</option><option>5</option>
+        </select>
+
+        <label>Car Parking</label>
+        <select name="Car Parking">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+
+        <button type="submit">Predict Price</button>
+
+    </form>
+
+    <div class="result">
+        {{ prediction_text if prediction_text else "" }}
+    </div>
+
+</div>
+
+</body>
+</html>
