@@ -1,0 +1,6 @@
+.venv/
+.idea/
+__pycache__/
+*.pyc
+model.pkl
+CSV/house_prices.csv
